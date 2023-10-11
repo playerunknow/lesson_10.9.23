@@ -10,6 +10,11 @@ class Student(id: Int, name: String, age: Int, address: Address)
   }
 }
 
+class Teacher(name: String, age: Int, address: Address, val subject: String) extends Human(name, age, address)
+{
+  def teach: String = s"I am teaching $subject."
+}
+
 case class Human(name: String, age: Int, address: Address)
 {
   def isAdult: Boolean = age >= 18
@@ -24,5 +29,11 @@ object Main
     val address = Address("City", "Region")
     val student = new Student(1, "Oleg", 20, address)
     println(student.displayInfo)
+
+    val teacherAddress = Address("City", "Street")
+    val mathTeacher = new Teacher("John", 38, teacherAddress, "Math")
+    println(mathTeacher.greet)
+    println(mathTeacher.teach)
+    println(mathTeacher.isAdult)
   }
 }
